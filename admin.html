@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Admin — Eki</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/dashboard.css">
+<link rel="stylesheet" href="css/admin.css">
+<link rel="stylesheet" href="css/alert.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <a href="dashboard.html" class="brand"><span class="brand-mark"></span>Eki <span style="font-family:var(--mono);font-size:11px;color:var(--muted);font-weight:500;margin-left:4px">/ admin</span></a>
+    <div class="top-actions">
+      <a href="dashboard.html" class="btn btn-ghost">Back to dashboard</a>
+      <button class="btn btn-ghost" onclick="logout()">Log out</button>
+    </div>
+  </div>
+</div>
+
+<div id="accessGate" class="access-gate hidden">
+  <h2 style="font-family:var(--display);font-size:22px;margin-bottom:8px">You don't have access to this page</h2>
+  <p>Admin access is limited to members of the admins Team in Appwrite.</p>
+</div>
+
+<div id="adminApp" class="admin-wrap">
+
+  <div class="admin-tabs">
+    <div class="admin-tab active" data-tab="catalog" onclick="showTab('catalog')">Catalog</div>
+    <div class="admin-tab" data-tab="layouts" onclick="showTab('layouts')">Layouts</div>
+    <div class="admin-tab" data-tab="components" onclick="showTab('components')">Components</div>
+    <div class="admin-tab" data-tab="pins" onclick="showTab('pins')">Subscription PINs</div>
+  </div>
+
+  <!-- CATALOG TAB -->
+  <div class="admin-panel active" id="tab-catalog">
+    <div class="admin-layout">
+      <div class="admin-card">
+        <div id="catList"></div>
+        <button type="button" class="repeater-add" onclick="addCategory()">+ New category</button>
+      </div>
+      <div>
+        <div class="admin-card" style="margin-bottom:18px">
+          <label style="display:block;font-size:12.5px;font-weight:600;color:var(--ink-soft);margin-bottom:8px">General sections (shown for every category)</label>
+          <div id="generalFeatureRows"></div>
+          <button type="button" class="repeater-add" onclick="addGeneralFeature()">+ Add general section</button>
+        </div>
+        <div class="admin-card" id="catForm"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LAYOUTS TAB -->
+  <div class="admin-panel" id="tab-layouts">
+    <p style="color:var(--muted);font-size:14px;margin-bottom:16px;max-width:600px">
+      Each layout variant here is what the recommendation engine cycles through
+      when building the wizard's 3 options for a section — e.g. Gallery can be
+      shown as a Grid or a Carousel. Only sections with more than one variant
+      show up differently across recommendations.
+    </p>
+    <div id="sectionLayoutGroups"></div>
+    <div class="admin-card">
+      <div class="toolbar">
+        <div class="field-inline" style="flex:1"><label>New section id (e.g. team)</label><input id="newLayoutSectionId" placeholder="team"></div>
+        <button class="btn btn-ghost" onclick="addLayoutSectionGroup()">+ Add section</button>
+      </div>
+    </div>
+    <div style="margin-top:18px"><button class="btn btn-primary" onclick="saveCatalog()">Save catalog</button></div>
+  </div>
+
+  <!-- COMPONENTS TAB -->
+  <div class="admin-panel" id="tab-components">
+    <p style="color:var(--muted);font-size:14px;margin-bottom:16px;max-width:600px">
+      Reusable toggles the recommendation engine can switch on. <code>appliesTo</code>
+      is either <code>global</code> (whole site) or a section id it's tied to
+      (e.g. <code>gallery</code>).
+    </p>
+    <div class="admin-card">
+      <div id="componentRows"></div>
+      <button type="button" class="repeater-add" onclick="addComponent()">+ Add component</button>
+    </div>
+    <div style="margin-top:18px"><button class="btn btn-primary" onclick="saveCatalog()">Save catalog</button></div>
+  </div>
+
+  <!-- PINS TAB -->
+  <div class="admin-panel" id="tab-pins">
+    <div class="admin-card" style="margin-bottom:20px">
+      <div class="toolbar">
+        <div class="field-inline"><label>Quantity</label><input id="pinQuantity" type="number" value="10" min="1" max="200"></div>
+        <div class="field-inline"><label>Plan label</label><input id="pinPlan" value="30 days"></div>
+        <div class="field-inline"><label>Duration (days)</label><input id="pinDuration" type="number" value="30"></div>
+        <button class="btn btn-primary" id="generatePinsBtn" onclick="generatePins()">Generate</button>
+      </div>
+    </div>
+
+    <div class="toolbar" style="justify-content:space-between">
+      <div class="field-inline">
+        <label>Filter</label>
+        <select id="pinFilter">
+          <option value="all">All</option>
+          <option value="unused">Unused</option>
+          <option value="used">Used</option>
+          <option value="disabled">Disabled</option>
+        </select>
+      </div>
+      <button class="btn btn-ghost" onclick="copyUnusedCodes()">Copy unused codes</button>
+    </div>
+
+    <div class="admin-card">
+      <table class="admin-table">
+        <thead><tr><th>Code</th><th>Plan</th><th>Duration</th><th>Status</th><th>Used by project</th><th></th></tr></thead>
+        <tbody id="pinsTableBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+<div id="toast-container"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/appwrite@16.0.2"></script>
+<script src="js/config.js"></script>
+<script src="js/catalog.js"></script>
+<script src="js/admin.js"></script>
+<script src="js/alert.js"></script>
+</body>
+</html>

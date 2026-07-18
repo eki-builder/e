@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dashboard — Eki</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/dashboard.css">
+<link rel="stylesheet" href="css/alert.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <a href="dashboard.html" class="brand"><span class="brand-mark"></span>Eki</a>
+    <div class="top-actions">
+      <div class="user-chip"><span class="user-dot" id="userInitial">·</span><span id="userName">—</span></div>
+      <a id="adminLink" href="admin.html" class="btn btn-ghost hidden">Admin</a>
+      <button class="btn btn-ghost" onclick="logout()">Log out</button>
+    </div>
+  </div>
+</div>
+
+<div class="dash-wrap">
+  <div class="dash-head">
+    <div>
+      <h1>Your websites</h1>
+      <p>Create, preview, and manage every site you've built with Eki.</p>
+    </div>
+  </div>
+
+  <div id="dashBanner" class="banner hidden"></div>
+
+  <div class="project-grid" id="projectGrid"></div>
+</div>
+
+<div id="toast-container"></div>
+
+<div id="pinModal" class="modal hidden" onclick="closePinModal(event)">
+  <div class="modal-content">
+    <h3>Activate subscription</h3>
+    <input id="pinCode" type="text" placeholder="e.g. PREM-9A82-HG63" style="text-transform:uppercase">
+    <button id="activatePinBtn" onclick="activatePin()">Activate</button>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/appwrite@16.0.2"></script>
+<script src="js/config.js"></script>
+<script src="js/dashboard.js"></script>
+<script src="js/alert.js"></script>
+</body>
+</html>

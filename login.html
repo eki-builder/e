@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Log in — Eki</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/auth.css">
+<link rel="stylesheet" href="css/alert.css">
+</head>
+<body>
+
+<div class="page">
+  <div class="auth-card">
+    <a href="index.html" class="auth-brand"><span class="auth-brand-mark"></span>Eki</a>
+    <h2>Welcome back</h2>
+    <p class="auth-sub">Log in to manage your website</p>
+
+    <div class="field">
+      <label for="loginEmail">Email</label>
+      <input type="email" id="loginEmail" autocomplete="email">
+    </div>
+
+    <div class="field">
+      <label for="loginPassword">Password</label>
+      <div class="input-wrapper">
+        <input type="password" id="loginPassword" autocomplete="current-password">
+        <div class="toggle-password" onclick="togglePassword('loginPassword', this)">
+          <img src="assets/eye.svg" alt="">
+        </div>
+      </div>
+    </div>
+
+    <button class="primary-btn" id="loginBtn" onclick="login()">Log in</button>
+
+    <div class="link"><a href="#" onclick="openResetModal()">Forgot password?</a></div>
+    <div class="divider">New to Eki? <a href="signup.html">Create an account</a></div>
+  </div>
+</div>
+
+<div id="toast-container"></div>
+
+<div id="resetModal" class="modal hidden" onclick="closeResetModal(event)">
+  <div class="modal-content">
+    <h3>Reset your password</h3>
+    <input id="resetEmail" type="email" placeholder="Enter your email">
+    <button onclick="sendReset()">Send reset link</button>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/appwrite@16.0.2"></script>
+<script src="js/config.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/alert.js"></script>
+</body>
+</html>

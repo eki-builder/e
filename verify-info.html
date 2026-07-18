@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Verify your email — Eki</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/auth.css">
+<link rel="stylesheet" href="css/alert.css">
+</head>
+<body>
+
+<div class="page">
+  <div class="auth-card" style="text-align:center">
+    <a href="index.html" class="auth-brand"><span class="auth-brand-mark"></span>Eki</a>
+    <div class="verify-icon">✉</div>
+    <h2>Check your inbox</h2>
+    <p class="auth-sub">We've sent a verification link to your email. Click it to activate your account.</p>
+
+    <button class="primary-btn" id="resendVerifyBtn" onclick="resendVerification()">Resend email</button>
+    <p id="resendCountdown" class="hidden"></p>
+
+    <div class="link"><a href="login.html">Back to log in</a></div>
+  </div>
+</div>
+
+<div id="toast-container"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/appwrite@16.0.2"></script>
+<script src="js/config.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/alert.js"></script>
+</body>
+</html>

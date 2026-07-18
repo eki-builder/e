@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Create your website — Eki</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/wizard.css">
+<link rel="stylesheet" href="css/alert.css">
+</head>
+<body>
+
+<div class="wiz-topbar">
+  <div class="wiz-topbar-inner">
+    <a href="dashboard.html" class="brand"><span class="brand-mark"></span>Eki</a>
+    <a href="dashboard.html" class="btn btn-ghost">Save &amp; exit</a>
+  </div>
+</div>
+
+<div class="wiz-wrap">
+
+  <div class="progress">
+    <div class="progress-step current"></div>
+    <div class="progress-step"></div>
+    <div class="progress-step"></div>
+    <div class="progress-step"></div>
+    <div class="progress-step"></div>
+    <div class="progress-step"></div>
+  </div>
+
+  <!-- STEP 1: CATEGORY -->
+  <div class="wiz-panel active" id="panel-1">
+    <div class="step-label">Step 01 / Category</div>
+    <h2>What kind of business do you run?</h2>
+    <p class="wiz-sub">This decides which sections and forms we show you next.</p>
+    <div class="select-grid" id="categoryGrid"></div>
+    <div class="wiz-nav">
+      <span></span>
+      <button class="btn btn-primary" onclick="next()">Continue →</button>
+    </div>
+  </div>
+
+  <!-- STEP 2: SUBCATEGORY -->
+  <div class="wiz-panel" id="panel-2">
+    <div class="step-label">Step 02 / Type</div>
+    <h2>What type of <span id="subcategoryCatName">business</span>?</h2>
+    <p class="wiz-sub">Pick the closest match — you can always change this later.</p>
+    <div class="select-grid narrow" id="subcategoryGrid"></div>
+    <div class="wiz-nav">
+      <button class="btn btn-ghost" onclick="back()">← Back</button>
+      <button class="btn btn-primary" onclick="next()">Continue →</button>
+    </div>
+  </div>
+
+  <!-- STEP 3: FEATURES -->
+  <div class="wiz-panel" id="panel-3">
+    <div class="step-label">Step 03 / Sections</div>
+    <h2>What do you want on your website?</h2>
+    <p class="wiz-sub">Tick only the sections your business actually needs. About &amp; Contact are always included.</p>
+    <div id="featureWrap"></div>
+    <div class="wiz-nav">
+      <button class="btn btn-ghost" onclick="back()">← Back</button>
+      <button class="btn btn-primary" onclick="next()">Continue →</button>
+    </div>
+  </div>
+
+  <!-- STEP 4: RECOMMENDATIONS -->
+  <div class="wiz-panel" id="panel-4">
+    <div class="step-label">Step 04 / Recommendation</div>
+    <h2>Here are three websites built for you</h2>
+    <p class="wiz-sub">Each one uses your category and selected sections. Pick the one that feels right — you can change it later.</p>
+    <div class="rec-grid" id="recGrid"></div>
+    <div class="wiz-nav">
+      <button class="btn btn-ghost" onclick="back()">← Back</button>
+      <button class="btn btn-primary" onclick="next()">Continue →</button>
+    </div>
+  </div>
+
+  <!-- STEP 5: CONTENT FORM -->
+  <div class="wiz-panel" id="panel-5">
+    <div class="step-label">Step 05 / Your content</div>
+    <h2>Tell us about your business</h2>
+    <p class="wiz-sub">Fill in what you have — you can always come back and edit this later.</p>
+    <div id="contentWrap"></div>
+    <div class="wiz-nav">
+      <button class="btn btn-ghost" onclick="back()">← Back</button>
+      <button class="btn btn-primary" onclick="next()">Continue →</button>
+    </div>
+  </div>
+
+  <!-- STEP 6: REVIEW & LAUNCH -->
+  <div class="wiz-panel" id="panel-6">
+    <div class="step-label">Step 06 / Launch</div>
+    <h2>Ready to launch</h2>
+    <p class="wiz-sub">Your site starts with a 7-day free trial. Nothing is charged today.</p>
+    <div id="reviewWrap"></div>
+    <div class="wiz-nav">
+      <button class="btn btn-ghost" onclick="back()">← Back</button>
+      <button class="btn btn-primary" id="launchBtn" onclick="launchWebsite()">Launch my website →</button>
+    </div>
+  </div>
+
+</div>
+
+<div id="toast-container"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/appwrite@16.0.2"></script>
+<script src="js/config.js"></script>
+<script src="js/catalog.js"></script>
+<script src="js/wizard.js"></script>
+<script src="js/alert.js"></script>
+</body>
+</html>
