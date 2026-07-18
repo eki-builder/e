@@ -8,10 +8,10 @@ FILE OVERVIEW
 /* =========================
 EXTERNAL SERVICE SETUP
 ========================= */
-const APPWRITE_ENDPOINT  = "https://YOUR_REGION.cloud.appwrite.io/v1"; // e.g. https://nyc.cloud.appwrite.io/v1
+const APPWRITE_ENDPOINT  = "https://nyc.cloud.appwrite.io/v1"; // e.g. https://nyc.cloud.appwrite.io/v1
 const APPWRITE_PROJECT   = "YOUR_PROJECT_ID";
 
-const DB_ID       = "YOUR_DATABASE_ID";   // Appwrite Database ID
+const DB_ID       = "6a5990d90037af3e257f";   // Appwrite Database ID
 const COL_PROFILES      = "profiles";          // one doc per user: display name, theme pref
 const COL_PROJECTS      = "projects";          // one doc per generated website (content/config only)
 const COL_CONTENT       = "website_content";   // one doc per project: all form content (JSON)
